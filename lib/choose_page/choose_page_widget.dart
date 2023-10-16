@@ -53,7 +53,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(32.0, 0.0, 32.0, 0.0),
                 child: Container(
                   width: double.infinity,
-                  height: 300.0,
+                  height: 250.0,
                   decoration: BoxDecoration(
                     color: Color(0xFFF5FBFB),
                   ),
@@ -76,7 +76,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(32.0, 30.0, 32.0, 10.0),
                 child: Container(
                   width: double.infinity,
-                  height: 200.0,
+                  height: 130.0,
                   decoration: BoxDecoration(
                     color: Color(0xFFF5FBFB),
                   ),
@@ -152,7 +152,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: 200.0,
+                    height: 130.0,
                     decoration: BoxDecoration(
                       color: Color(0xFFF5FBFB),
                     ),
@@ -188,6 +188,74 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                                 alignment: AlignmentDirectional(0.00, 0.00),
                                 child: Text(
                                   'START TEST',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.w800,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(32.0, 30.0, 32.0, 10.0),
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    context.pushNamed('HomePage');
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 130.0,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFF5FBFB),
+                    ),
+                    child: Stack(
+                      children: [
+                        Opacity(
+                          opacity: 0.8,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.network(
+                              'https://images.unsplash.com/photo-1516534775068-ba3e7458af70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw4fHxsZXNzb258ZW58MHx8fHwxNjk1NTAzODUzfDA&ixlib=rb-4.0.3&q=80&w=1080',
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Opacity(
+                          opacity: 0.7,
+                          child: Align(
+                            alignment: AlignmentDirectional(0.00, 0.00),
+                            child: Container(
+                              width: 180.0,
+                              height: 100.0,
+                              constraints: BoxConstraints(
+                                maxHeight: 30.0,
+                              ),
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context).secondary,
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: Align(
+                                alignment: AlignmentDirectional(0.00, 0.00),
+                                child: Text(
+                                  'NOTES',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(

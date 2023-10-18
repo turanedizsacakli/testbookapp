@@ -2,21 +2,22 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'notes_page_model.dart';
-export 'notes_page_model.dart';
+import 'notes_component_model.dart';
+export 'notes_component_model.dart';
 
-class NotesPageWidget extends StatefulWidget {
-  const NotesPageWidget({Key? key}) : super(key: key);
+class NotesComponentWidget extends StatefulWidget {
+  const NotesComponentWidget({Key? key}) : super(key: key);
 
   @override
-  _NotesPageWidgetState createState() => _NotesPageWidgetState();
+  _NotesComponentWidgetState createState() => _NotesComponentWidgetState();
 }
 
-class _NotesPageWidgetState extends State<NotesPageWidget> {
-  late NotesPageModel _model;
+class _NotesComponentWidgetState extends State<NotesComponentWidget> {
+  late NotesComponentModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -27,9 +28,9 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NotesPageModel());
+    _model = createModel(context, () => NotesComponentModel());
 
-    _model.emailAddressController ??= TextEditingController();
+    _model.noteController ??= TextEditingController();
   }
 
   @override
@@ -102,28 +103,29 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 0.0, 0.0),
                         child: Text(
-                          'Leave a note',
+                          'Not Defteri',
                           style: FlutterFlowTheme.of(context).headlineSmall,
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 0.0, 0.0),
-                        child: Text(
-                          'Please let us know what is going on below.',
-                          style: FlutterFlowTheme.of(context).labelMedium,
                         ),
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 0.0),
                         child: TextFormField(
-                          controller: _model.emailAddressController,
+                          controller: _model.noteController,
+                          onChanged: (_) => EasyDebounce.debounce(
+                            '_model.noteController',
+                            Duration(milliseconds: 2000),
+                            () async {
+                              setState(() {
+                                _model.noteController?.text = FFAppState().note;
+                              });
+                            },
+                          ),
                           textCapitalization: TextCapitalization.sentences,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelStyle: FlutterFlowTheme.of(context).bodyLarge,
-                            hintText: 'Leave note here...',
+                            hintText: 'Notunuzu buraya yazınız...',
                             hintStyle: FlutterFlowTheme.of(context).labelLarge,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -162,7 +164,7 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                           style: FlutterFlowTheme.of(context).bodyMedium,
                           maxLines: 4,
                           cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.emailAddressControllerValidator
+                          validator: _model.noteControllerValidator
                               .asValidator(context),
                         ),
                       ),
@@ -170,10 +172,12 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 16.0, 16.0, 44.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            setState(() {
+                              _model.noteController?.text = FFAppState().note;
+                            });
                           },
-                          text: 'Leave Note',
+                          text: '- NOTU KAYDET -',
                           options: FFButtonOptions(
                             width: double.infinity,
                             height: 50.0,

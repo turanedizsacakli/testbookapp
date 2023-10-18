@@ -116,6 +116,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'denemeSayfasi',
           path: '/denemeSayfasi',
           builder: (context, params) => DenemeSayfasiWidget(),
+        ),
+        FFRoute(
+          name: 'notesPage',
+          path: '/notesPage',
+          builder: (context, params) => NotesPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

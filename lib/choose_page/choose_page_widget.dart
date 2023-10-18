@@ -254,18 +254,27 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                               ),
                               child: Align(
                                 alignment: AlignmentDirectional(0.00, 0.00),
-                                child: Text(
-                                  'NOTES',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w800,
-                                        decoration: TextDecoration.underline,
-                                      ),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('notesPage');
+                                  },
+                                  child: Text(
+                                    'NOTES',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w800,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),

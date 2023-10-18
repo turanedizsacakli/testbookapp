@@ -34,6 +34,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _answerControl = prefs.getString('ff_answerControl') ?? _answerControl;
     });
+    _safeInit(() {
+      _note = prefs.getString('ff_note') ?? _note;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -76,6 +79,13 @@ class FFAppState extends ChangeNotifier {
   set answerControl(String _value) {
     _answerControl = _value;
     prefs.setString('ff_answerControl', _value);
+  }
+
+  String _note = '';
+  String get note => _note;
+  set note(String _value) {
+    _note = _value;
+    prefs.setString('ff_note', _value);
   }
 }
 

@@ -5,6 +5,7 @@ import 'dart:ui';
 import 'notes_component_widget.dart' show NotesComponentWidget;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ class NotesComponentModel extends FlutterFlowModel<NotesComponentWidget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for note widget.
+  FocusNode? noteFocusNode;
   TextEditingController? noteController;
   String? Function(BuildContext, String?)? noteControllerValidator;
 
@@ -20,6 +22,7 @@ class NotesComponentModel extends FlutterFlowModel<NotesComponentWidget> {
   void initState(BuildContext context) {}
 
   void dispose() {
+    noteFocusNode?.dispose();
     noteController?.dispose();
   }
 

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'notes_component_model.dart';
@@ -31,6 +32,7 @@ class _NotesComponentWidgetState extends State<NotesComponentWidget> {
     _model = createModel(context, () => NotesComponentModel());
 
     _model.noteController ??= TextEditingController();
+    _model.noteFocusNode ??= FocusNode();
   }
 
   @override
@@ -112,6 +114,7 @@ class _NotesComponentWidgetState extends State<NotesComponentWidget> {
                             16.0, 16.0, 16.0, 0.0),
                         child: TextFormField(
                           controller: _model.noteController,
+                          focusNode: _model.noteFocusNode,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.noteController',
                             Duration(milliseconds: 2000),

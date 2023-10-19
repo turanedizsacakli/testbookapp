@@ -1,8 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'notes_page_widget.dart' show NotesPageWidget;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +16,7 @@ class NotesPageModel extends FlutterFlowModel<NotesPageWidget> {
 
   final unfocusNode = FocusNode();
   // State field(s) for note widget.
+  FocusNode? noteFocusNode;
   TextEditingController? noteController;
   String? Function(BuildContext, String?)? noteControllerValidator;
 
@@ -20,6 +26,7 @@ class NotesPageModel extends FlutterFlowModel<NotesPageWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    noteFocusNode?.dispose();
     noteController?.dispose();
   }
 

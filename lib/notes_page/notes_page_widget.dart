@@ -1,7 +1,12 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'notes_page_model.dart';
@@ -25,6 +30,7 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
     _model = createModel(context, () => NotesPageModel());
 
     _model.noteController ??= TextEditingController();
+    _model.noteFocusNode ??= FocusNode();
   }
 
   @override
@@ -36,6 +42,15 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    if (isiOS) {
+      SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(
+          statusBarBrightness: Theme.of(context).brightness,
+          systemStatusBarContrastEnforced: true,
+        ),
+      );
+    }
+
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -68,6 +83,40 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                StreamBuilder<List<NotesRecord>>(
+                  stream: queryNotesRecord(),
+                  builder: (context, snapshot) {
+                    // Customize what your widget looks like when it's loading.
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: SizedBox(
+                          width: 50.0,
+                          height: 50.0,
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              FlutterFlowTheme.of(context).primary,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
+                    List<NotesRecord> listViewNotesRecordList = snapshot.data!;
+                    return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: listViewNotesRecordList.length,
+                      itemBuilder: (context, listViewIndex) {
+                        final listViewNotesRecord =
+                            listViewNotesRecordList[listViewIndex];
+                        return Text(
+                          listViewNotesRecord.noteParagraph,
+                          style: FlutterFlowTheme.of(context).bodyMedium,
+                        );
+                      },
+                    );
+                  },
+                ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +134,7 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
                   child: Text(
-                    'Not Defteri',
+                    'Notunuzu yazınız...',
                     style: FlutterFlowTheme.of(context).headlineSmall,
                   ),
                 ),
@@ -94,6 +143,16 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                       EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
                   child: TextFormField(
                     controller: _model.noteController,
+                    focusNode: _model.noteFocusNode,
+                    onChanged: (_) => EasyDebounce.debounce(
+                      '_model.noteController',
+                      Duration(milliseconds: 2000),
+                      () async {
+                        setState(() {
+                          _model.noteController?.text = FFAppState().note;
+                        });
+                      },
+                    ),
                     textCapitalization: TextCapitalization.sentences,
                     obscureText: false,
                     decoration: InputDecoration(
@@ -145,8 +204,12 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                   padding:
                       EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 44.0),
                   child: FFButtonWidget(
-                    onPressed: () {
-                      print('Button pressed ...');
+                    onPressed: () async {
+                      await NotesRecord.collection
+                          .doc()
+                          .set(createNotesRecordData(
+                            noteParagraph: FFAppState().note,
+                          ));
                     },
                     text: '- NOTU KAYDET -',
                     options: FFButtonOptions(

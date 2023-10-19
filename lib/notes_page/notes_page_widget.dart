@@ -1,10 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -61,10 +61,24 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
           automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: Colors.white,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
           title: Text(
-            'Page Title',
+            'Notlar Sayfası',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
                   color: Colors.white,
@@ -72,7 +86,7 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                 ),
           ),
           actions: [],
-          centerTitle: false,
+          centerTitle: true,
           elevation: 2.0,
         ),
         body: SafeArea(
@@ -144,15 +158,6 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                   child: TextFormField(
                     controller: _model.noteController,
                     focusNode: _model.noteFocusNode,
-                    onChanged: (_) => EasyDebounce.debounce(
-                      '_model.noteController',
-                      Duration(milliseconds: 2000),
-                      () async {
-                        setState(() {
-                          _model.noteController?.text = FFAppState().note;
-                        });
-                      },
-                    ),
                     textCapitalization: TextCapitalization.sentences,
                     obscureText: false,
                     decoration: InputDecoration(
@@ -208,7 +213,7 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                       await NotesRecord.collection
                           .doc()
                           .set(createNotesRecordData(
-                            noteParagraph: FFAppState().note,
+                            noteParagraph: _model.noteController.text,
                           ));
                     },
                     text: '- NOTU KAYDET -',
@@ -219,7 +224,7 @@ class _NotesPageWidgetState extends State<NotesPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: FlutterFlowTheme.of(context).secondary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'Readex Pro',

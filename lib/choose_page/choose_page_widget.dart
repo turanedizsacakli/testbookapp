@@ -238,13 +238,22 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                       children: [
                         Opacity(
                           opacity: 0.8,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Image.network(
-                              'https://images.unsplash.com/photo-1516534775068-ba3e7458af70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw4fHxsZXNzb258ZW58MHx8fHwxNjk1NTAzODUzfDA&ixlib=rb-4.0.3&q=80&w=1080',
-                              width: double.infinity,
-                              height: double.infinity,
-                              fit: BoxFit.cover,
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed('notesPage');
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Image.network(
+                                'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw0fHxub3Rlc3xlbnwwfHx8fDE2OTc3NDg4ODN8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                width: double.infinity,
+                                height: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),

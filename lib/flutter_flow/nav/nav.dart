@@ -79,13 +79,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomePageWidget() : ChoosePageWidget(),
+          appStateNotifier.loggedIn ? NavBarPage() : ChoosePageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomePageWidget() : ChoosePageWidget(),
+              appStateNotifier.loggedIn ? NavBarPage() : ChoosePageWidget(),
         ),
         FFRoute(
           name: 'LoginPage',
@@ -95,7 +95,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'HomePage',
           path: '/homePage',
-          builder: (context, params) => HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : HomePageWidget(),
         ),
         FFRoute(
           name: 'forgotPassword',
@@ -110,7 +112,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'ChoosePage',
           path: '/choosePage',
-          builder: (context, params) => ChoosePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'ChoosePage')
+              : ChoosePageWidget(),
         ),
         FFRoute(
           name: 'denemeSayfasi',
@@ -120,7 +124,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'notesPage',
           path: '/notesPage',
-          builder: (context, params) => NotesPageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'notesPage')
+              : NotesPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

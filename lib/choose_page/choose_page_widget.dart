@@ -129,7 +129,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                                   context.pushNamed('denemeSayfasi');
                                 },
                                 child: Text(
-                                  'START LESSON',
+                                  'DERS NOTLARI',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -151,7 +151,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(32.0, 30.0, 32.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(32.0, 20.0, 32.0, 10.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -196,18 +196,27 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                               ),
                               child: Align(
                                 alignment: AlignmentDirectional(0.00, 0.00),
-                                child: Text(
-                                  'START TEST',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 20.0,
-                                        fontWeight: FontWeight.w800,
-                                        decoration: TextDecoration.underline,
-                                      ),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('HomePage');
+                                  },
+                                  child: Text(
+                                    'TEST SAYFASI',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w800,
+                                          decoration: TextDecoration.underline,
+                                        ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -219,7 +228,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(32.0, 30.0, 32.0, 10.0),
+                padding: EdgeInsetsDirectional.fromSTEB(32.0, 20.0, 32.0, 10.0),
                 child: InkWell(
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
@@ -282,7 +291,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                                     context.pushNamed('notesPage');
                                   },
                                   child: Text(
-                                    'NOTES',
+                                    'NOTLAR',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(

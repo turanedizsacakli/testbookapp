@@ -94,13 +94,22 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                     children: [
                       Opacity(
                         opacity: 0.8,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: Image.network(
-                            'https://images.unsplash.com/photo-1501504905252-473c47e087f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwzfHxsZXNzb258ZW58MHx8fHwxNjk1NTAzODUzfDA&ixlib=rb-4.0.3&q=80&w=1080',
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('ChoosePage');
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.network(
+                              'https://images.unsplash.com/photo-1501504905252-473c47e087f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwzfHxsZXNzb258ZW58MHx8fHwxNjk1NTAzODUzfDA&ixlib=rb-4.0.3&q=80&w=1080',
+                              width: double.infinity,
+                              height: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -170,13 +179,22 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                       children: [
                         Opacity(
                           opacity: 0.8,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Image.network(
-                              'https://images.unsplash.com/photo-1516534775068-ba3e7458af70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw4fHxsZXNzb258ZW58MHx8fHwxNjk1NTAzODUzfDA&ixlib=rb-4.0.3&q=80&w=1080',
-                              width: double.infinity,
-                              height: double.infinity,
-                              fit: BoxFit.cover,
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              context.pushNamed('HomePage');
+                            },
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Image.network(
+                                'https://images.unsplash.com/photo-1516534775068-ba3e7458af70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw4fHxsZXNzb258ZW58MHx8fHwxNjk1NTAzODUzfDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                width: double.infinity,
+                                height: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
@@ -184,38 +202,48 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                           opacity: 0.7,
                           child: Align(
                             alignment: AlignmentDirectional(0.00, 0.00),
-                            child: Container(
-                              width: 180.0,
-                              height: 100.0,
-                              constraints: BoxConstraints(
-                                maxHeight: 30.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).secondary,
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0.00, 0.00),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed('HomePage');
-                                  },
-                                  child: Text(
-                                    'TEST SAYFASI',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.w800,
-                                          decoration: TextDecoration.underline,
-                                        ),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('HomePage');
+                              },
+                              child: Container(
+                                width: 180.0,
+                                height: 100.0,
+                                constraints: BoxConstraints(
+                                  maxHeight: 30.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                child: Align(
+                                  alignment: AlignmentDirectional(0.00, 0.00),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed('HomePage');
+                                    },
+                                    child: Text(
+                                      'TEST SAYFASI',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.w800,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -270,38 +298,48 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                           opacity: 0.7,
                           child: Align(
                             alignment: AlignmentDirectional(0.00, 0.00),
-                            child: Container(
-                              width: 180.0,
-                              height: 100.0,
-                              constraints: BoxConstraints(
-                                maxHeight: 30.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).secondary,
-                                borderRadius: BorderRadius.circular(30.0),
-                              ),
-                              child: Align(
-                                alignment: AlignmentDirectional(0.00, 0.00),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed('notesPage');
-                                  },
-                                  child: Text(
-                                    'NOTLAR',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          fontSize: 20.0,
-                                          fontWeight: FontWeight.w800,
-                                          decoration: TextDecoration.underline,
-                                        ),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('notesPage');
+                              },
+                              child: Container(
+                                width: 180.0,
+                                height: 100.0,
+                                constraints: BoxConstraints(
+                                  maxHeight: 30.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                                child: Align(
+                                  alignment: AlignmentDirectional(0.00, 0.00),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed('notesPage');
+                                    },
+                                    child: Text(
+                                      'NOTLAR',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.w800,
+                                            decoration:
+                                                TextDecoration.underline,
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),

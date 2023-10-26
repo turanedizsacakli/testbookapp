@@ -1174,7 +1174,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               onPressed: () async {
                                 setState(() {
                                   FFAppState().questionControl =
-                                      FFAppState().questionControl + -1;
+                                      FFAppState().questionControl +
+                                                  FFAppState().questionControl >
+                                              1
+                                          ? (FFAppState().questionControl - 1)
+                                          : (FFAppState().questionControl = 1);
                                   FFAppState().numberOfQuestions =
                                       FFAppState().numberOfQuestions + 1;
                                 });
@@ -1217,6 +1221,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   FFAppState().numberOfQuestions =
                                       FFAppState().numberOfQuestions + 1;
                                 });
+                                _model.timerController.onResetTimer();
+
+                                _model.timerController.onStartTimer();
                               },
                               text: 'Next >>',
                               options: FFButtonOptions(

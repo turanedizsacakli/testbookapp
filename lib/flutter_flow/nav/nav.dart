@@ -127,6 +127,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? NavBarPage(initialPage: 'notesPage')
               : NotesPageWidget(),
+        ),
+        FFRoute(
+          name: 'StudyPage',
+          path: '/studyPage',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'StudyPage')
+              : StudyPageWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

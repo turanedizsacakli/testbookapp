@@ -128,6 +128,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'HomePage': HomePageWidget(),
       'ChoosePage': ChoosePageWidget(),
       'notesPage': NotesPageWidget(),
+      'StudyPage': StudyPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -164,6 +165,14 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.notes,
+              size: 24.0,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.menu_book_sharp,
               size: 24.0,
             ),
             label: 'Home',

@@ -53,6 +53,21 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+          automaticallyImplyLeading: false,
+          title: Text(
+            'TEST KİTABI UYGULAMASI',
+            style: FlutterFlowTheme.of(context).headlineMedium.override(
+                  fontFamily: 'Outfit',
+                  color: Colors.white,
+                  fontSize: 22.0,
+                ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 2.0,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
@@ -100,7 +115,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            context.pushNamed('ChoosePage');
+                            context.pushNamed('StudyPage');
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20.0),
@@ -135,7 +150,7 @@ class _ChoosePageWidgetState extends State<ChoosePageWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('denemeSayfasi');
+                                  context.pushNamed('StudyPage');
                                 },
                                 child: Text(
                                   'DERS NOTLARI',

@@ -37,6 +37,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _note = prefs.getString('ff_note') ?? _note;
     });
+    _safeInit(() {
+      _questionCount = prefs.getInt('ff_questionCount') ?? _questionCount;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -86,6 +89,13 @@ class FFAppState extends ChangeNotifier {
   set note(String _value) {
     _note = _value;
     prefs.setString('ff_note', _value);
+  }
+
+  int _questionCount = 0;
+  int get questionCount => _questionCount;
+  set questionCount(int _value) {
+    _questionCount = _value;
+    prefs.setInt('ff_questionCount', _value);
   }
 }
 

@@ -1217,7 +1217,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               onPressed: () async {
                                 setState(() {
                                   FFAppState().questionControl =
-                                      FFAppState().questionControl + 1;
+                                      FFAppState().questionControl <= 1 ? 1 : 1;
                                   FFAppState().numberOfQuestions =
                                       FFAppState().numberOfQuestions + 1;
                                 });
@@ -1288,6 +1288,34 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               borderRadius: BorderRadius.circular(50.0),
                             ),
                           ),
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        child: FutureBuilder<int>(
+                          future: queryQuestionsRecordCount(),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                            int textCount = snapshot.data!;
+                            return Text(
+                              textCount.toString(),
+                              style: FlutterFlowTheme.of(context).bodyMedium,
+                            );
+                          },
                         ),
                       ),
                     ],
